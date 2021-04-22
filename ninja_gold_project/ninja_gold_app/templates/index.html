@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <div class="conteiner" style="padding: 50px; background-color: darkgray; border-radius: 10px ;border: 2px solid black;">
+        <div class="head" style="display: flex; ">
+            <h4>Gold Balance :
+            <input type="text" value="{{request.session.gold}}">
+        </h4>
+        </div><br>
+        <div class="categories" style="display: flex; justify-content: space-between; margin-top: 10px; ">
+            <div class="category" style="border: 1px solid black; padding: 20px; text-align: center;border-radius: 10px; border: 2px solid black; background-color: blanchedalmond;">
+                <form action="/process_money/10/20" method="POST">
+                    {% csrf_token %}
+                    <h2>Farm</h2>
+                    <h4>(earn 10 - 20 gold</h4>
+                    <input type="submit"  value="Find Gold!" style="background-color: chartreuse;">
+                </form>
+            </div>
+            <div class="category" style="border: 1px solid black; padding: 20px; text-align: center;border-radius: 10px; border: 2px solid black;background-color: blanchedalmond;">
+                <form action="/process_money/5/10" method="POST">
+                    {% csrf_token %}
+                    <h2>Cave</h2>
+                    <h4>(earn 5 - 10 gold</h4>
+                    <input type="submit"  value="Find Gold!" style="background-color: chartreuse;">
+                </form>
+            </div>
+            <div class="category" style="border: 1px solid black; padding: 20px; text-align: center;border-radius: 10px; border: 2px solid black;background-color: blanchedalmond;">
+                <form action="/process_money/2/5" method="POST">
+                    {% csrf_token %}
+                    <h2>House</h2>
+                    <h4>(earn 2 - 5 gold</h4>
+                    <input type="submit"  value="Find Gold!" style="background-color: chartreuse;">
+                </form>
+            </div>
+            <div class="category" style="border: 1px solid black; padding: 20px; text-align: center;border-radius: 10px; border: 2px solid black;background-color: blanchedalmond;">
+                <form action="/process_money/-50/50" method="POST">
+                    {% csrf_token %}
+                    <h2>Casino</h2>
+                    <h4>(earn -50 - 50 gold</h4>
+                    <input type="submit"  value="Find Gold!" style="background-color: chartreuse;">
+                </form>
+            </div>
+        </div>
+        <div class="activities" style="border: black;">
+            <ul>
+                {% for x in request.session.activity %}
+            <li style="color:{{x.color}};">{{x.text}}{{x.time}}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        <a href="/reset">Reset</a>
+    </div>
+</body>
+</html>
